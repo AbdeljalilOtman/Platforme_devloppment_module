@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP EX8</title>
+    <style>
+    table, th, td {
+        border:1px solid black;
+      }
+    </style>
+</head>
+<body>
+        
+</body>
+<script>
+
+// Document ready handler (optional, ensures script runs after DOM loads)
+document.addEventListener("DOMContentLoaded", function() {
+  let X = 5;
+  let Y = 7;
+
+  if (X !== null && Y !== null) {
+    const table = document.createElement("table");
+    table.id = "f";
+    table.style.width = "100%";
+    document.body.appendChild(table);
+
+    // Create table rows and cells
+    for (let i = 0; i < X; i++) {
+      const row = document.createElement("tr");
+      table.appendChild(row);
+      for (let j = 0; j < Y; j++) {
+        const cell = document.createElement("td");
+        cell.textContent = i + " - " + j; // Set cell content with row and column information
+        row.appendChild(cell);
+      }
+    }
+  } else {
+    alert("Invalid input. Please enter positive numbers only.");
+  }
+});
+
+
+</script>
+</html>

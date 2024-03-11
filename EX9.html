@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP EX9</title>
+    <style>
+    table, th, td {
+        border:1px solid black;
+      }
+    </style>
+</head>
+<body>
+        
+</body>
+<script>
+function getValidNumber(message) {
+  let isValid = false;
+
+  if (!isNaN(message) && message > 0) {
+    return message;
+  }else{
+    while (!isValid) {
+    
+    if (!isNaN(message) && message > 0) {
+      isValid = true;
+    } else {
+      alert("Please enter a valid positive number.");
+    }
+        message = Number(prompt(message));
+    }
+
+    return message;
+  }
+
+  
+}
+
+// Document ready handler (optional, ensures script runs after DOM loads)
+document.addEventListener("DOMContentLoaded", function() {
+  let X = getValidNumber(Number(prompt("Enter the number of rows (X):")));
+  let Y = getValidNumber(Number(prompt("Enter the number of columns (Y):")));
+
+  if (X !== null && Y !== null) {
+    const table = document.createElement("table");
+    table.id = "f";
+    table.style.width = "100%";
+    document.body.appendChild(table);
+
+    // Create table rows and cells
+    for (let i = 0; i < X; i++) {
+      const row = document.createElement("tr");
+      table.appendChild(row);
+      for (let j = 0; j < Y; j++) {
+        const cell = document.createElement("td");
+        cell.textContent = i + " - " + j; // Set cell content with row and column information
+        row.appendChild(cell);
+      }
+    }
+  } else {
+    alert("Invalid input. Please enter positive numbers only.");
+  }
+});
+
+
+</script>
+</html>
