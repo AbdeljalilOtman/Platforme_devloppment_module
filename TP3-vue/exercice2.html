@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau aléatoire avec bornes</title>
+</head>
+<body>
+    <h2>Tableau aléatoire avec bornes</h2>
+    <form id="formulaireTableau">
+        <label for="dimension">Dimension du tableau:</label>
+        <input type="number" id="dimension" name="dimension" required><br>
+        <label for="borneInf">Limite inférieure:</label>
+        <input type="number" id="borneInf" name="borneInf" required><br>
+        <label for="borneSup">Limite supérieure:</label>
+        <input type="number" id="borneSup" name="borneSup" required><br>
+        <button type="submit" id="genererTableau">Générer un tableau</button>
+    </form>
+    <p id="resultat"></p>
+
+    <script>
+        const formulaireTableau = document.getElementById('formulaireTableau');
+        const resultat = document.getElementById('resultat');
+
+        formulaireTableau.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const dimension = parseFloat(document.getElementById('dimension').value);
+            const borneInf = parseFloat( document.getElementById('borneInf').value);
+            const borneSup = parseFloat(document.getElementById('borneSup').value);
+
+            // Validation des champs du formulaire
+            if (isNaN(dimension) || dimension <= 0) {
+                alert("La dimension du tableau doit être un nombre entier positif.");
+                return;
+            } else if (isNaN(borneInf) || isNaN(borneSup)) {
+                alert("Les limites doivent être des nombres entiers.");
+                return;
+            } else if (borneInf >= borneSup) {
+                alert("La limite inférieure doit être inférieure à la limite supérieure.");
+                return;
+            }
+
+            // Génération du tableau aléatoire
+            const tableau = genererTableauAleatoire(dimension, borneInf, borneSup);
+
+            // Affichage du tableau
+            let resultatText = `<table border="1">`;
+            for (let i = 0; i < tableau.length; i++) {
+                if (i % 10 === 0) {
+                    resultatText += "</tr><tr>";
+                }
+                resultatText += `<td>${tableau[i]}</td>`;
+            }
+            resultatText += "</tr></table>";
+            resultat.innerHTML = resultatText;
+        });
+
+        function genererTableauAleatoire(dimension, borneInf, borneSup) {
+            const tableau = [];
+            for (let i = 0; i < dimension; i++) {
+                tableau.push(Math.floor(Math.random() * (borneSup - borneInf)) + borneInf);
+            }
+            return tableau;
+        }
+    </script>
+</body>
+</html>

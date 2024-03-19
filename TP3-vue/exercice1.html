@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire d'inscription</title>
+</head>
+<body>
+    <h2>Formulaire d'inscription</h2>
+    <form id="inscriptionForm">
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" name="nom" required><br>
+
+        <label for="prenom">Prénom:</label>
+        <input type="text" id="prenom" name="prenom" required><br>
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required><br>
+
+        <label for="motDePasse">Mot de passe:</label>
+        <input type="password" id="motDePasse" name="motDePasse" required><br>
+
+        <label for="confirmationMotDePasse">Resaisir le mot de passe:</label>
+        <input type="password" id="confirmationMotDePasse" name="confirmationMotDePasse" required><br>
+
+        <label for="telephone">Téléphone:</label>
+        <input type="tel" id="telephone" name="telephone" required><br>
+
+        <label for="langue">Langue:</label>
+        <select name="langue" id="langue">
+            <option value="anglais">Anglais</option>
+            <option value="francais">Français</option>
+            <option value="espagnol">Espagnol</option>
+        </select><br>
+
+        <label for="commentaire">Commentaire:</label>
+        <textarea id="commentaire" name="commentaire" rows="4" cols="50"></textarea><br>
+
+        <button type="submit" id="valider">Valider</button>
+        <button type="reset" id="annuler">Annuler</button>
+    </form>
+    <div id="recapitulatif"></div>
+
+    <script>
+        const form = document.getElementById('inscriptionForm');
+        const recapitulatif = document.getElementById('recapitulatif');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const nom = document.getElementById('nom').value;
+            const prenom = document.getElementById('prenom').value;
+            const email = document.getElementById('email').value;
+            const motDePasse = document.getElementById('motDePasse').value;
+            const confirmationMotDePasse = document.getElementById('confirmationMotDePasse').value;
+            const telephone = document.getElementById('telephone').value;
+            const langue = document.getElementById('langue').value;
+            const commentaire = document.getElementById('commentaire').value;
+
+            // Validation des champs du formulaire
+            if (nom === '' || prenom === '' || email === '' || motDePasse === '' || confirmationMotDePasse === '' || telephone === '') {
+                alert('Tous les champs sont obligatoires');
+                return false;
+            } else if (motDePasse !== confirmationMotDePasse) {
+                alert('Les mots de passe ne correspondent pas');
+                return false;
+            } else if(!/^\d+$/.test(telephone)) {
+                alert('Le numéro de téléphone doit contenir uniquement des chiffres');
+                return false;
+            }
+
+            // Affichage du récapitulatif
+            let recap = '<h2>Récapitulatif des informations saisies</h2>';
+            recap += `<p>Nom: ${nom}</p>`;
+            recap += `<p>Prénom: ${prenom}</p>`;
+            recap += `<p>E-mail: ${email}</p>`;
+            recap += `<p>Téléphone: ${telephone}</p>`;
+            recap += `<p>Langue: ${langue}</p>`;
+            recap += `<p>Commentaire: ${commentaire}</p>`;
+            recapitulatif.innerHTML = recap;
+
+            // Reset du formulaire (facultatif)
+            // form.reset();
+        });
+
+        const btnAnnuler = document.getElementById('annuler');
+        btnAnnuler.addEventListener('click', function() {
+            form.reset();
+            recapitulatif.innerHTML = '';
+        });
+    </script>
+</body>
+</html>

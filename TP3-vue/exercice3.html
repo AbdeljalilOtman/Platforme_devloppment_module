@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire étudiant</title>
+    <style>
+        table , tr{
+            border-bottom: 1px solid black;
+            border-top:1px solid black ;
+        }
+        th{
+            padding: 2px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Formulaire d'inscription</h2>
+    <form id="formulaireEtudiant">
+        <label for="codeEtudiant">Code étudiant (Type texte):</label>
+        <input type="text" id="codeEtudiant" name="codeEtudiant" required><br>
+
+        <label for="nomEtudiant">Nom étudiant (Type texte):</label>
+        <input type="text" id="nomEtudiant" name="nomEtudiant" required><br>
+
+        <label for="prenomEtudiant">Prénom étudiant (Type texte):</label>
+        <input type="text" id="prenomEtudiant" name="prenomEtudiant" required><br>
+
+        <label for="semestre">Semestre (liste déroulante):</label>
+        <select id="semestre" name="semestre" required>
+            <option value="1">Semestre 1</option>
+            <option value="2">Semestre 2</option>
+        </select><br>
+
+        <label for="module1">Note Module 1:</label>
+        <input type="number" id="module1" name="module1" min="0" max="20" required><br>
+
+        <label for="module2">Note Module 2:</label>
+        <input type="number" id="module2" name="module2" min="0" max="20" required><br>
+
+        <label for="module3">Note Module 3:</label>
+        <input type="number" id="module3" name="module3" min="0" max="20" required><br>
+
+        <label for="module4">Note Module 4:</label>
+        <input type="number" id="module4" name="module4" min="0" max="20" required><br>
+
+        <label for="module5">Note Module 5:</label>
+        <input type="number" id="module5" name="module5" min="0" max="20" required><br>
+
+        <label for="module6">Note Module 6:</label>
+        <input type="number" id="module6" name="module6" min="0" max="20" required><br>
+
+        <button type="submit" id="valider">Valider</button>
+    </form>
+    <table id="resultat" >
+        <tr>
+            <th>Code Etudiant</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Semestre</th>
+            <th>Module1</th>
+            <th>Module2</th>
+            <th>Module3</th>
+            <th>Module4</th>
+            <th>Module5</th>
+            <th>Module6</th>
+            <th>Moyenne</th>
+            <th>Descision</th>
+        </tr>
+    </table>
+
+    <script>
+        let formulaireEtudiant = document.getElementById('formulaireEtudiant');
+        let resultat = document.getElementById('resultat');
+
+        formulaireEtudiant.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let codeEtudiant = document.getElementById('codeEtudiant').value;
+            let nomEtudiant = document.getElementById('nomEtudiant').value;
+            let prenomEtudiant = document.getElementById('prenomEtudiant').value;
+            let semestre = document.getElementById('semestre').value;
+            let module1 = parseFloat(document.getElementById('module1').value);
+            let module2 = parseFloat(document.getElementById('module2').value);
+            let module3 = parseFloat(document.getElementById('module3').value);
+            let module4 = parseFloat(document.getElementById('module4').value);
+            let module5 = parseFloat(document.getElementById('module5').value);
+            let module6 = parseFloat(document.getElementById('module6').value);
+
+            // Validation des champs du formulaire
+            if (isNaN(module1) || module1 < 0 || module1 > 20 ||
+                isNaN(module2) || module2 < 0 || module2 > 20 ||
+                isNaN(module3) || module3 < 0 || module3 > 20 ||
+                isNaN(module4) || module4 < 0 || module4 > 20 ||
+                isNaN(module5) || module5 < 0 || module5 > 20 ||
+                isNaN(module6) || module6 < 0 || module6 > 20) {
+                alert("Les notes des modules doivent être des nombres compris entre 0 et 20.");
+                return false;
+
+            // Génération du tableau aléatoire
+                };
+            let t = document.querySelector('table');
+            let new_line = document.createElement('tr');
+
+            let l = [codeEtudiant, nomEtudiant, prenomEtudiant, semestre, module1, module2,module3,module4, module5, module6, 0, 0];
+            let temp = document.createElement('td')
+            let sum = 0;
+            let check = false, n = 0;
+            for (let index = 0; index < 12; index++) {
+                if(index <= 9 ){
+                    temp.textContent = l[index];
+                }else if(index == 10) {
+                    temp.textContent = sum / 6;
+                }else if(index == 11){
+                    if(check == false && n < 3){
+                        if(sum/6 >= 12){
+                            temp.textContent = 'Semestre validé';
+                        }else if(sum/6 < 12 || sum/6 >= 8){
+                            temp.textContent = 'Semestre Non validé';
+                        }
+                    }else{
+                        temp.textContent = 'Semestre Non validé';
+                    }
+                }
+                if (index >= 4 && index <= 9 ) {
+                    sum += l[index];
+                    if (l[index] < 8) {
+                        check = true;
+                    }else if(l[index] < 12 && l[index] >= 8){
+                        n += 1
+                    }
+                }
+                new_line.appendChild(temp);
+                temp = document.createElement('td');
+            }
+
+            t.appendChild(new_line);
+            formulaireEtudiant.reset();
+            })
+
+            // Affichage du tableau
+            
+    </script>
+
+    </body>
+       
