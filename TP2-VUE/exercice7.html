@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 2</title>
+    <style>
+        /* CSS for menu */
+        #menu {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <a href="https://fr.wikipedia.org/wiki/Wikip%C3%A9dia:Accueil_principal"><div>Redirection</div></a>
+
+    <!-- Div to trigger menu display -->
+    <div id="triggerDiv">Click Me for Menu</div>
+
+    <!-- Menu -->
+    <div id="menu">
+        <ul>
+            <li>Menu Item 1</li>
+            <li>Menu Item 2</li>
+            <li>Menu Item 3</li>
+        </ul>
+    </div>
+
+    <script>
+        document.getElementsByTagName('a')[0].addEventListener('click', function () {
+            alert('Redirection interdite');
+            document.getElementsByTagName('a')[0].href = '';
+            
+        });
+
+        // Display menu on div click
+        document.getElementById("triggerDiv").addEventListener("click", function() {
+            var menu = document.getElementById("menu");
+            menu.style.display = (menu.style.display === "block") ? "none" : "block";
+        });
+
+        // Close menu when mouse leaves the div area
+        document.getElementById("triggerDiv").addEventListener("mouseleave", function() {
+            var menu = document.getElementById("menu");
+            menu.style.display = "none";
+        });
+    </script>
+</body>
+</html>

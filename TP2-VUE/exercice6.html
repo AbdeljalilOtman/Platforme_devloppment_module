@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 6</title>
+</head>
+<body>
+    <form id="emailForm" action="">
+        <label for="email">Email:</label>
+        <input type="text" name="email" id="email"><br><br>
+
+        <label for="objet">Object:</label>
+        <input type="text" name="objet" id="objet"><br><br>
+
+        <label for="corps">Body:</label>
+        <input type="text" name="corps" id="corps"><br><br>
+
+        <input type="submit" value="Send Email">
+
+        
+    </form>
+    <span></span>
+    
+    <script>
+        // JavaScript code to get form information
+        document.getElementById("emailForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+            var email = document.getElementById("email").value;
+            var objet = document.getElementById("objet").value;
+            var corps = document.getElementById("corps").value;
+            
+            // Do something with the form information
+            document.querySelector('span').innerHTML = 'Sender : ' + email + '<br> Objet : '+objet+'<br> Corps du mail : '+corps;
+            
+            // Here you can send the form data to the server or perform any other action
+        });
+    </script>
+</body>
+</html>

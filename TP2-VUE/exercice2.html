@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 2</title>
+    <style>
+        div{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text">
+        
+        <input type="text">
+        <button onclick="permute()">Permuter</button>
+        <span></span>
+    </div>
+    <script>
+        
+    
+        function permute() {
+            let a = parseFloat(document.getElementsByTagName('input')[0].value)
+            let b = parseFloat(document.getElementsByTagName('input')[1].value)
+
+            if (isNaN(a) || isNaN(b)) {
+                document.querySelector('span').textContent = "Enter a Number ??";
+                
+            }else{
+                document.getElementsByTagName('input')[0].value = b;
+                document.getElementsByTagName('input')[1].value = a;
+            }
+
+            
+        }
+        
+    
+    </script>
+</body>
+
+</html>

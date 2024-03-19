@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 4</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let c = true;
+    
+    while (c == true){
+        let s = parseFloat(prompt('enter three numerical values.\nFirst one '));
+        let t = parseFloat(prompt('second one'));
+        let u = parseFloat(prompt('third one'));
+
+        if (isNaN(s) ||isNaN(t) ||isNaN(u) ) {
+            alert('you must enter a valid numbers in all the feilds');
+            
+        }else{
+            if (s==t && t==u) {
+                alert('the three variables are equale.');
+            }else if (s == t || t == u || s == u){
+                alert('two variables are equale.');
+
+            }else{
+                alert('the three variables are not equale.');
+            }
+
+            c = false;
+        }
+        
+    } 
+
+</script>
+
+</html>

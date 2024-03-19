@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 5</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let c = true;
+    
+
+    while(c == true){
+        let  HT = parseFloat(prompt('Donne le prix HT'));
+        let TVA = parseFloat(prompt('donne moi le prix de TVA'));
+
+        if(isNaN(HT) || isNaN(TVA) || HT <= 0 || TVA <= 0 || TVA >= 1){
+            alert('Entre des valeur numérique uniquement.')
+        }else{
+            document.body.innerHTML = '<strong>Votre TTC est  ' + HT * (TVA + 1) + '</strong>';
+            c = false;
+        }
+    }
+
+
+</script>
+</html>

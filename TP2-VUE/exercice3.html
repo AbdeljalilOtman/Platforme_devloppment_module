@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 3</title>
+    <style>
+        div{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text" alt="Saisire le premier nombre" >
+        
+        <input type="text" alt="Saisire le deuxieme nombre">
+        <select name="" id="operations">
+            <option value="1">+</option>
+            <option value="2">-</option>
+            <option value="3">x</option>
+            <option value="4">/</option>
+        </select>
+        <button onclick="Calculer()">Calculer</button>
+        <span></span>
+    </div>
+    <script>
+        
+    
+        function Calculer() {
+            let a = document.getElementById('operations');
+            let x = parseFloat(document.getElementsByTagName('input')[0].value)
+            let y = parseFloat(document.getElementsByTagName('input')[1].value)
+
+            if(isNaN(x) || isNaN(y)){
+                document.querySelector('span').innerHTML = 'Enter a valid Number';
+
+            }else{
+                if (a.value == 1) {
+                    document.querySelector('span').innerHTML = x+y;
+                    
+                }else if(a.value == 2){
+                    document.querySelector('span').innerHTML = x-y;
+                }else if(a.value == 3){
+                    document.querySelector('span').innerHTML = x*y;
+                }else{
+                    document.querySelector('span').innerHTML = x/y;
+                }
+            }
+        }
+        
+    
+    </script>
+</body>
+
+</html>

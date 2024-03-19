@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 1</title>
+    <style>
+        div{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text">
+        <strong>+</strong>
+        <input type="text">
+        <strong>=</strong>
+        <span></span>
+        <button onclick="calculate()">Calculer</button>
+    </div>
+    <script>
+        
+    
+        function calculate() {
+            let a = parseFloat(document.getElementsByTagName('input')[0].value)
+            let b = parseFloat(document.getElementsByTagName('input')[1].value)
+
+            if (isNaN(a) || isNaN(b)) {
+                console.log('fuck')
+                document.querySelector('span').textContent = "Enter a Number ??";
+                
+            }else{
+                document.querySelector('span').textContent = a + b;
+            }
+
+            
+        }
+        
+    
+    </script>
+</body>
+
+</html>
